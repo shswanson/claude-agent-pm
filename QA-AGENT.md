@@ -78,7 +78,12 @@ Visual testing catches "does it work now?" — this section catches "will it bre
    - Watch for subtle differences: the spec says "show the user's name" but the code outputs `user.username` — is that the same thing?
    - Watch for function shadowing: does a local/imported function have the same name as a builtin but different behavior?
 
-4. **What the coding agent's verification certificate says**
+4. **Constraint propagation — does consuming code honor declared constraints?**
+   - If the data model declares constraints (e.g., "this item is desktop-only", "this slot appears only on these page types"), verify that all code iterating over those items enforces the constraints
+   - A common bug: code loops over all items and applies generic behavior, ignoring per-item constraints that should filter or branch behavior
+   - CSS/presentation-layer hiding does NOT excuse generating wrong server-side output — verify the server respects constraints before output reaches the browser
+
+5. **What the coding agent's verification certificate says**
    - The coding agent's completion report should include a self-verification certificate with traced execution paths
    - Cross-check their traces against your own reading of the code
    - If the certificate is missing or incomplete, flag it — the coding agent skipped a required step
