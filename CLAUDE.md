@@ -1,4 +1,5 @@
 # CLAUDE.md — Operating Principles
+<!-- Version: 2.0 | Updated: 2026-03-12 -->
 
 This file defines how work is approached.
 It has higher priority than any individual task instruction.
