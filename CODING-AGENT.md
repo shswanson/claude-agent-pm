@@ -64,24 +64,16 @@ Post this as a comment on the GitHub Issue when done. The QA Handoff and Session
 
 ## Self-Verification Certificate
 
-Before committing, fill out this reasoning certificate for each task in the spec. This prevents "looks right" pushes that break under edge cases. The structured format forces you to trace execution paths rather than pattern-match against expected output.
-
-**Why this exists:** Unstructured "does it look right?" review misses ~10-15% of semantic bugs that structured reasoning catches — especially subtle issues like shadowed functions, null propagation, and off-by-one path selection. (Based on [research on semi-formal code reasoning](https://arxiv.org/abs/2603.01896).)
+Before committing, fill out this reasoning certificate for each task in the spec. The structured format forces you to trace execution paths rather than pattern-match against expected output. (Based on [research on semi-formal code reasoning](https://arxiv.org/abs/2603.01896).)
 
 **For each task, work through these sections:**
 
 ### 1. PREMISES
-State what the spec requires this code to do. Be precise — quote the spec's success criteria.
+State what the spec requires this code to do. Quote the spec's success criteria.
 
 ### 2. EXECUTION TRACE
-Walk through the changed code with **concrete inputs** — not abstract descriptions. Pick at least:
-- One **happy path** input (the common case)
-- One **edge case** input (null, empty, missing key, boundary value)
-- One **error path** input (if applicable — what triggers the fallback/error handling?)
+Walk through the changed code with concrete inputs (happy path, edge case, error path). Trace which branch is taken, what each variable holds, what gets returned.
 
-For each input, trace the actual execution: which branch is taken, what value each variable holds, what gets returned or rendered. Use the actual variable names and function names from the code.
-
-Example:
 ```
 Input: user_id = 42, role = 'editor'
 → get_user(42) returns User object with role='editor'
@@ -91,33 +83,15 @@ Input: user_id = 42, role = 'editor'
 ```
 
 ### 3. EDGE CASES
-List edge cases that the actual code paths exercise. For each:
-- What input triggers it?
-- What does the code do?
-- Is the behavior correct per the spec?
-
-Don't invent hypothetical scenarios — focus on cases that real data can produce. Check: What values does the database actually contain? What can the API actually return? What does the user actually input?
+List edge cases the code paths exercise. Focus on cases that real data can produce, not hypotheticals.
 
 ### 4. FORMAL CONCLUSION
-One of:
-- **SATISFIES SPEC** — "This change satisfies [spec requirement] because [traced evidence from §2-3]"
-- **DEVIATES** — "This change deviates from the spec: [what's different] because [traced evidence]. Flagging for PM review."
-
-**If you cannot complete the trace** (e.g., you don't know what a function returns, or you're unsure about a type), that's a signal to read more code before pushing. Do not guess.
+**SATISFIES SPEC** or **DEVIATES** — with traced evidence from sections 2-3. If you cannot complete the trace, read more code before pushing. Do not guess.
 
 ### When to skip
+CSS-only changes, copy/text changes, static HTML with no conditionals, version number updates.
 
-Skip the certificate for purely mechanical changes where there's no logic to trace:
-- CSS-only changes (spacing, colors, font sizes)
-- Copy/text changes
-- Adding static HTML with no conditionals
-- Updating version numbers
-
-For everything else — any logic, conditional rendering, API calls, database queries — do the certificate.
-
-### Include in completion report
-
-Post the certificate (or a summary) in your completion report. This gives the QA agent traced evidence to verify against, rather than starting from scratch.
+Include the certificate (or summary) in your completion report — it gives the QA agent traced evidence to verify against.
 
 ---
 
