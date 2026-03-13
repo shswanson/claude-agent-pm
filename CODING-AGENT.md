@@ -137,9 +137,9 @@ Follow existing patterns in the codebase. Don't introduce new patterns.
 - Work directly on `main` (or the branch specified in the spec)
 - One commit per batch (unless the spec says otherwise)
 - Use the commit message from the spec
-- **Never use `Closes #N`, `Fixes #N`, or `Resolves #N` in commit messages.** These auto-close the issue on GitHub, bypassing the QA gate. Reference issues with just `#N` instead (e.g., "Add widget layout for #42"). The PM agent owns issue closure after QA passes. **Hook-enforced.**
-- Never force push
-- Never amend published commits
+- Reference issues with `#N` only (e.g., "Add widget layout for #42"). Avoid `Closes #N`, `Fixes #N`, or `Resolves #N` — these auto-close the issue on GitHub, bypassing the QA gate. Hook-enforced.
+- Do not force push
+- Do not amend published commits
 - Stage specific files by name — never `git add -A` or `git add .`
 
 ### Deploy Pipeline
@@ -158,16 +158,15 @@ Wait for the pipeline to pass. If it fails, investigate and fix.
 
 ---
 
-## What You Do NOT Do
+## Scope Boundaries
 
-- **Do not deviate from the spec** without flagging it. If you think the spec is wrong, stop and report.
-- **Do not refactor surrounding code.** Only change what the spec asks.
-- **Do not add features** beyond what's specified. No "while I'm in here" additions.
-- **Do not modify CLAUDE.md, TODOS.md, or any agent spec.** Those are owned by the PM agent.
-- **Do not modify files the spec says NOT to touch.**
-- **Do not skip verification.** Run every verification command.
-- **Do not push if verification fails.** Fix the issue or report back.
-- **Do not edit files outside your declared file set.** If you discover you need to, stop and notify the PM agent.
+Your scope is defined by the spec's declared file set and tasks. Anything outside that scope, stop and report back to the PM agent.
+
+- If you think the spec is wrong, stop and report rather than deviating.
+- Only change what the spec asks. No refactoring surrounding code or adding adjacent improvements.
+- CLAUDE.md, TODOS.md, and agent spec files are owned by the PM agent.
+- If verification fails, fix the issue or report back. Do not push failing code.
+- If you need to edit files outside your declared file set, stop and notify the PM agent.
 
 ---
 
