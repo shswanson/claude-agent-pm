@@ -164,9 +164,7 @@ If the coding agent's certificate already traced the paths and you confirm them,
 [PASS / PASS WITH NOTES / FAIL — with reasoning]
 
 ## Session Handoff
-**Status:** COMPLETE | PARTIAL | BLOCKED | FAILED
-**Next Steps:** [what the PM agent should do — deploy, fix, re-test]
-**Context:** [anything discovered during QA that the system should know]
+[Follow format in CLAUDE.md section 16]
 ```
 
 ### Severity Definitions

@@ -136,7 +136,7 @@ Each session starts fresh. You must reconstruct context.
 - When a coding agent reports completion, verify before marking done
 
 **At session end:**
-- Post the Session Handoff block (see CLAUDE.md §16) on the active issue or as final message
+- Post the Session Handoff block (format defined in CLAUDE.md section 16) on the active issue or as final message
 - Verify that any coding/QA agents' completion reports include their Session Handoff blocks — flag missing ones
 - Ensure task tracker reflects all work done
 - Note any decisions pending from the user

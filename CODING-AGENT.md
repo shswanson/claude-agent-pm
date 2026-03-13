@@ -57,9 +57,7 @@ Post this as a comment on the GitHub Issue when done. The QA Handoff and Session
 **Known risks:** [areas where you're least confident]
 
 ### Session Handoff
-**Status:** COMPLETE | PARTIAL | BLOCKED | FAILED
-**Next Steps:** [what the PM/QA agent should do next]
-**Context:** [anything the next session needs to know]
+[Follow format in CLAUDE.md section 16]
 ```
 
 ---
