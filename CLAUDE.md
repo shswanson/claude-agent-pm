@@ -230,6 +230,7 @@ The general flow: Intake → Spec → (Design) → Implement → QA → Verify �
 | `CODING-AGENT.md` | Coding agent role, code style, git conventions, deploy pipeline |
 | `QA-AGENT.md` | QA procedures, visual testing, regression checklists |
 | `INTAKE-AGENT.md` | Bug/request triage, TODOS.md formatting rules |
+| `docs/LESSONS.md` | Accumulated lessons about process and agent behavior |
 
 ---
 

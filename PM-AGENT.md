@@ -181,13 +181,4 @@ After a batch is deployed and QA'd, rename `specs/batch-N-slug.md` → `specs/x-
 
 ## Lessons Learned
 
-_Update this section as you learn things about the system._
-
-### Process
-- Batch specs with exact code snippets work best. Ambiguity in specs leads to wrong implementations.
-- Coding agents report completion but don't always commit. Always check git status.
-- Completed specs get `x-` prefix after QA.
-
-### Agent Behavior
-- Agents suffer "time blindness" — they'll spend hours running tests instead of making progress. Set speed expectations in specs.
-- Scope creep kills sessions. If an agent discovers something adjacent, it should stop and report, not improvise.
+See `docs/LESSONS.md` — a growing reference updated as the team learns. Read at session start alongside ARCHITECTURE.md.
