@@ -14,6 +14,10 @@
 
 The site has no user-facing login. Members need to log in to access gated content (subscriber-only articles, event registrations). WordPress has native auth but no frontend UI — only `wp-login.php`, which doesn't match the site design.
 
+## Intent
+
+Logged-out users see a styled login form that matches the site design. After logging in, they can access gated content inline. Failed logins return them to the same page with an error message, not to `wp-login.php`.
+
 ## Architecture
 
 Two new files (`auth.php`, `auth.js`) plus minimal additions to existing files. Uses WordPress native sessions — no custom auth system. The login form is a reusable partial that can be placed in templates or called via shortcode.
@@ -26,6 +30,7 @@ Two new files (`auth.php`, `auth.js`) plus minimal additions to existing files. 
 
 Create a login form using the existing `.form-field` BEM pattern from the newsletter signup form.
 
+<new_code file="inc/auth.php">
 ```php
 <?php
 /**
@@ -83,12 +88,14 @@ function mysite_login_form( $redirect = '' ) {
     <?php
 }
 ```
+</new_code>
 
-### Important notes:
+<notes>
 - Uses `wp_nonce_field()` for CSRF protection
 - Error message escapes output — no XSS via URL params
 - Redirect URL uses `esc_attr()` — prevent open redirect injection
 - Follows existing BEM naming (`.form-field__label`, `.form-field__input`) from newsletter form
+</notes>
 
 ---
 
@@ -98,6 +105,7 @@ function mysite_login_form( $redirect = '' ) {
 
 WordPress redirects failed logins to `wp-login.php` by default. Redirect back to the referring page with an error flag instead.
 
+<new_code file="inc/auth.php">
 ```php
 /**
  * Redirect failed logins back to the referring page.
@@ -110,6 +118,7 @@ add_action( 'wp_login_failed', function( $username ) {
     }
 } );
 ```
+</new_code>
 
 ---
 
@@ -117,6 +126,7 @@ add_action( 'wp_login_failed', function( $username ) {
 
 **File:** `inc/auth.php` (same file, add below)
 
+<new_code file="inc/auth.php">
 ```php
 /**
  * [members_only] shortcode — content only visible to logged-in users.
@@ -132,6 +142,7 @@ add_shortcode( 'members_only', function( $atts, $content = '' ) {
         . '</div>';
 } );
 ```
+</new_code>
 
 ---
 
@@ -141,30 +152,31 @@ add_shortcode( 'members_only', function( $atts, $content = '' ) {
 
 Add one line at the top of the file, after the existing includes:
 
-```php
-require_once get_template_directory() . '/inc/auth.php';
-```
-
-**Current code (line ~3):**
+<current_code file="inc/template-tags.php" line="3">
 ```php
 require_once get_template_directory() . '/inc/seo.php';
 ```
+</current_code>
 
-**New code (line ~4, add below):**
+<new_code file="inc/template-tags.php">
 ```php
 require_once get_template_directory() . '/inc/auth.php';
 ```
+</new_code>
 
 ---
 
+<do_not_touch>
 ## What NOT to Touch
 
 - `functions.php` — the include chain goes through `template-tags.php`, not `functions.php` directly
 - `wp-login.php` — we're overriding behavior via hooks, not editing core files
 - Any existing form styling — the auth form reuses `.form-field` and `.btn` classes already defined
+</do_not_touch>
 
 ---
 
+<verification>
 ## Verification Checklist
 
 - [ ] `inc/auth.php` exists with `mysite_login_form()`, failed login redirect, and shortcode
@@ -189,6 +201,7 @@ curl -s 'https://staging.example.com/' | grep -c '_mysite_nonce'
 # Shortcode renders gate for logged-out users
 curl -s 'https://staging.example.com/test-page-with-shortcode/' | grep -c 'members-gate'
 ```
+</verification>
 
 ---
 

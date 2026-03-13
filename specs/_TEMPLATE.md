@@ -14,6 +14,10 @@
 
 [2-3 sentences: What's wrong or what's needed. Why this matters.]
 
+## Intent
+
+[What does "done" look like from the user's perspective? Describe the desired end state, not the implementation. If the coding agent finds a better path than specified below, this is what they optimize for.]
+
 ## Architecture
 
 [How the solution fits into the existing system. What approach was chosen and why.]
@@ -24,22 +28,23 @@
 
 **File:** `path/to/file.ext`
 
-[Description of what to change. Include before/after code snippets when possible.]
+[Description of what to change.]
 
-### Current code (around line N):
-
+<current_code file="path/to/file.ext" line="N">
 ```language
 // existing code that will be modified
 ```
+</current_code>
 
-### New code:
-
+<new_code file="path/to/file.ext">
 ```language
 // what it should become
 ```
+</new_code>
 
-### Important notes:
+<notes>
 - [Gotchas, edge cases, things the agent might get wrong]
+</notes>
 
 ---
 
@@ -51,13 +56,16 @@
 
 ---
 
+<do_not_touch>
 ## What NOT to Touch
 
 - `path/to/unrelated-file.ext` — looks related but should be left alone because [reason]
 - [Other files that might be tempting to modify]
+</do_not_touch>
 
 ---
 
+<verification>
 ## Verification Checklist
 
 - [ ] `file1.ext` has [expected change]
@@ -78,6 +86,7 @@ curl -s 'https://staging-url/affected-page/' | grep -c 'expected-element'
 # Negative check (ensure nothing broke)
 curl -s 'https://staging-url/unrelated-page/' | grep -c 'still-present'
 ```
+</verification>
 
 ---
 
