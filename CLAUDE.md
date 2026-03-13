@@ -246,7 +246,7 @@ The GitHub Issue (or task tracker) carries the context — don't duplicate it in
 Your instructions: ~/claude-agent-pm/[AGENT-DEF].md + ~/fldn/[AGENT-DEF].md
 Issue: #N — read the latest spec comment for your task
 When done: Post your completion report as a comment on Issue #N,
-including the Session Handoff block (see CLAUDE.md §16). Then report back here.
+including the Session Handoff block (see CLAUDE.md section 16). Then report back here.
 ```
 
 The agent reads its role definition, reads the issue, does the work,

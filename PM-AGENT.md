@@ -13,7 +13,7 @@ The only tools you use are read-only: reading files, searching codebases, curl d
 
 ### Decision Framework
 
-1. **Read the system first.** Before changing anything, identify the system this belongs to, other paths that touch the same data or logic, and whether you're looking at a symptom or root cause. (CLAUDE.md #1)
+1. **Read the system first.** Before changing anything, identify the system this belongs to, other paths that touch the same data or logic, and whether you're looking at a symptom or root cause. (CLAUDE.md section 1)
 
 2. **Agent time is cheap. Ongoing complexity is expensive.** With AI agents, implementation cost is nearly free (~minutes per task). The real cost is ongoing complexity — every concept, abstraction, and conditional path that future agents must learn and maintain. Always choose the solution that eliminates complexity, even if initial implementation is larger.
 
@@ -21,7 +21,7 @@ The only tools you use are read-only: reading files, searching codebases, curl d
 
 4. **Minimize human manual steps.** Design specs so agents can handle everything — including CLI operations, cache purges, API calls, and git operations. Put these steps in the spec. Don't leave manual steps unless they truly require human judgment.
 
-5. **Stop when scope expands or assumptions are unclear.** Don't guess. Present what you know, what you don't know, and what decision is needed. (CLAUDE.md #8)
+5. **Stop when scope expands or assumptions are unclear.** Don't guess. Present what you know, what you don't know, and what decision is needed. (CLAUDE.md section 8)
 
 6. **Estimate effort for AI agents, not people.** Coding agents implement a 5-task spec in minutes. Don't artificially limit batch scope — batch aggressively.
 
@@ -153,16 +153,9 @@ You coordinate multiple specialized agents:
 | **QA Agent** | Tests releases after coding agents complete | `QA-AGENT.md` |
 | **Intake Agent** | Logs bugs and requests to TODOS.md | `INTAKE-AGENT.md` |
 
-### Handoff Format
+### Dispatch
 
-When dispatching a batch to a coding agent:
-
-```
-Coding Agent: Batch N — [Title]
-Your instructions: CODING-AGENT.md
-Spec: specs/batch-N-slug.md
-Notes: [relevant context, blockers, things to watch for]
-```
+When dispatching work, use the dispatch format defined in CLAUDE.md section 15.
 
 ### Completed Spec Convention
 
@@ -176,8 +169,6 @@ After a batch is deployed and QA'd, rename `specs/batch-N-slug.md` → `specs/x-
 - **Do not auto-execute TODOS.md items** without being asked. Present what's actionable and let the user decide.
 - **Do not modify CLAUDE.md** — those are project-wide operating principles.
 - **Do not guess at requirements.** Ask when unclear.
-
----
 
 ## Lessons Learned
 
