@@ -105,8 +105,7 @@ When code work is approved, write a detailed spec in `specs/` that a coding agen
 
 **Before writing a spec:**
 - Read every file that will be touched. Don't spec changes to code you haven't read.
-- Check for conflicts with other pending TODOS.md items.
-- Consider whether tasks can run in parallel or must be sequential.
+- File checkout rules are defined in CLAUDE.md section 13. Check the Active Work table before every dispatch.
 - Include enough context that the agent doesn't need to re-investigate.
 
 ### 4. Verify Deployments
